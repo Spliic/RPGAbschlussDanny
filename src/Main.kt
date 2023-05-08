@@ -1,5 +1,6 @@
 import Kunde.Kundenaccount
-import Produkte.Menü
+import Datenbank.Menü
+import LoginUndLogout.LoginUndLogout
 import haendler.Haendleraccount
 
 var CYAN = "\u001B[36m"
@@ -7,12 +8,18 @@ var RESET = "\u001B[0m"
 
 fun main() {
 
-    menuFromStore()
+    /*var check = true
+    while (check == true){
+        check = menuFromStore()
+    }
+
+     */
+     menuFromStore()
 
 
 }
 
-fun menuFromStore(){
+fun menuFromStore(): Boolean{
     var userLoggedIn = false
     val kundenaccount = Kundenaccount()
     val haendleraccount = Haendleraccount()
@@ -21,8 +28,9 @@ fun menuFromStore(){
     val menueUser = Menü()
 
 
+
     println("""
-            Was möchten sie hier tun?
+            ${CYAN}Was möchten sie hier tun?$RESET
             [1] Neues Kundenkonto erstellen
             [2] Neues Händlerkonto erstellen
             [3] Kunden-Anmeldung
@@ -40,9 +48,10 @@ fun menuFromStore(){
 
     // Wenn Kunde eingeloggt ist, wird Menü für den User geöffnet
     if (userLoggedIn){
-        menueUser.menueUser()
-    }
 
+        userLoggedIn = menueUser.menueUser()
+    }
+    return userLoggedIn
 }
 
 
