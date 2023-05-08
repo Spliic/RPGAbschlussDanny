@@ -1,10 +1,7 @@
 package Datenbank
 import CYAN
 import LoginUndLogout.LoginUndLogout
-import Produkte.Ersatzteile
-import Produkte.Handyakkus
-import Produkte.Handydisplays
-import Produkte.Handywerkzeug
+import Produkte.*
 import RESET
 
 
@@ -12,6 +9,7 @@ open class Datenbank {
 
     var haendler = mutableMapOf<String, String>()
     var kunde = mutableMapOf<String, String>()
+
 
     init {
         this.haendler = mutableMapOf(
@@ -35,6 +33,15 @@ open class Datenbank {
         Handydisplays("iPhone X  Display",69.99,1,"4/10")
     )
 
+    var anleitungHandys = mutableListOf<Ersatzteile>(
+       Handyanleitung("iPhone 14 Pro Display + Akku Reparatur Anleitung ",24.99,1,"8/10"),
+       Handyanleitung("iPhone 13 Pro Display + Akku Reparatur Anleitung ",19.99,1,"7/10"),
+       Handyanleitung("iPhone 12 Pro Display + Akku Reparatur Anleitung ",14.99,1,"6/10"),
+       Handyanleitung("iPhone 11 Pro Display + Akku Reparatur Anleitung ",9.99,1,"8/10"),
+       Handyanleitung("iPhone X Display + Akku Reparatur Anleitung ",4.99,1,"10/10"),
+
+    )
+
     var ersatzTeilSortimentAkku = mutableListOf<Ersatzteile>(
         Handyakkus("iPhone 14 Pro Akku",69.99,1,"9/10"),
         Handyakkus("iPhone 13 Pro Akku",59.99,1,"5/10"),
@@ -50,6 +57,7 @@ open class Datenbank {
     )
 
     fun displayAnzeigeLassen(){
+        var productmenu = Menü()
         var logOut = LoginUndLogout()
         println("""
                 .___.__               .__                
@@ -90,11 +98,14 @@ open class Datenbank {
             5 -> println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[4].name} in den Warenkorb gelegt")
             6 -> logOut.logOutUser()
         }
+        println("Wollen sie noch weitere Produkte kaufen?")
+        productmenu.menueUser()
+
 
     }
     fun akkuAnzeigenLassen() {
         var logOut = LoginUndLogout()
-
+        var produktmenu = Menü()
         println(
             """
                     __    __          
@@ -137,9 +148,12 @@ open class Datenbank {
             5 -> println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[4].name} in den Warenkorb gelegt")
             6 -> logOut.logOutUser()
         }
+        println("Wollen sie noch weitere Produkte kaufen?")
+        produktmenu.menueUser()
     }
     fun sonstigesWerkzeugAnzeigenLassen() {
             var logOut = LoginUndLogout()
+            var produktmenu = Menü()
             println(
                 """
                                   __                                
@@ -178,8 +192,68 @@ open class Datenbank {
                 3 -> println("Sie haben den Artikel: ${ersatzteilWerkzeug[3].name} in den Warenkorb gelegt")
                 4 -> logOut.logOutUser()
             }
+        println("Wollen sie noch weitere Produkte kaufen?")
+        produktmenu.menueUser()
 
         }
+
+    fun reparaturAnleitung() {
+
+        var logOut = LoginUndLogout()
+        var anleitung = Datenbank()
+        var produktmenu = Menü()
+        println(
+            """
+                           _____         .__         .__  __                        
+              /  _  \   ____ |  |   ____ |__|/  |_ __ __  ____    ____  
+             /  /_\  \ /    \|  | _/ __ \|  \   __\  |  \/    \  / ___\ 
+            /    |    \   |  \  |_\  ___/|  ||  | |  |  /   |  \/ /_/  >
+            \____|__  /___|  /____/\___  >__||__| |____/|___|  /\___  / 
+                    \/     \/          \/                    \//_____/
+                    """.trimIndent()
+        )
+        for (anleitung in 0 until anleitungHandys.size) {
+            println(
+                """
+                Artikel ${anleitung + 1}: Name: ${anleitungHandys[anleitung].name}
+                           Preis: ${anleitungHandys[anleitung].preis}€
+                           Anzahl: ${anleitungHandys[anleitung].anzahl}
+                           Bewertung: ${anleitungHandys[anleitung].bewertung}
+            """.trimIndent()
+            )
+        }
+        println(
+            """
+            ${CYAN}Welches Produkt wollen sie in den Einkaufswagen legen?:$RESET
+            [1] Artikel 1: ${anleitungHandys[0].name}
+            [2] Artikel 2: ${anleitungHandys[1].name}
+            [3] Artikel 3: ${anleitungHandys[2].name}
+            [4] Artikel 4: ${anleitungHandys[3].name}
+            [5] Artikel 5: ${anleitungHandys[4].name}
+            [6] Logout
+            Bitte Wählen sie eine Zahl von 1-6 (Mit Enter bestätigen)
+        """.trimIndent()
+        )
+        var userInputProductMenu = readln().toInt()
+
+
+        when (userInputProductMenu) {
+            1 -> println("Sie haben den Artikel: ${anleitungHandys[0].name} in den Warenkorb gelegt")
+            2 -> println("Sie haben den Artikel: ${anleitungHandys[1].name} in den Warenkorb gelegt")
+            3 -> println("Sie haben den Artikel: ${anleitungHandys[2].name} in den Warenkorb gelegt")
+            4 -> println("Sie haben den Artikel: ${anleitungHandys[3].name} in den Warenkorb gelegt")
+            5 -> println("Sie haben den Artikel: ${anleitungHandys[4].name} in den Warenkorb gelegt")
+            6 -> logOut.logOutUser()
+        }
+        println("Wollen sie noch weitere Produkte kaufen?")
+        produktmenu.menueUser()
+    }
+
+    fun warenkorb(){
+
+    }
+
+
 
 }
 

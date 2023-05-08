@@ -2,8 +2,6 @@ package Datenbank
 import CYAN
 import Kunde.Accountverwaltung
 import LoginUndLogout.LoginUndLogout
-import Produkte.Ersatzteile
-import Produkte.Handydisplays
 import RESET
 
 class Menü {
@@ -16,10 +14,10 @@ class Menü {
     fun menueUser():Boolean {
 
         val produktUser = Menü()
-        val reparaturAnleit = Menü()
-        val reparaturShop = Menü()
         val accountFromUser = Accountverwaltung()
         val userLogOut = LoginUndLogout()
+        var anleitung = Datenbank()
+        var warenkorb = Datenbank()
 
         println(
             """
@@ -27,8 +25,8 @@ class Menü {
             Was möchten sie hier tun?$RESET
             [1] Produkte Anzeigen
             [2] Reparatur Anleitung Anzeigen
-            [3] Dein Reparatur Shop in der Nähe
-            [4] Accountverwaltung
+            [3] Accountverwaltung
+            [4] Mein Warenkorb ansehen
             [5] Ausloggen
             Bitte Wählen sie eine Zahl von 1-5 (Mit Enter bestätigen)
         """.trimIndent()
@@ -38,10 +36,11 @@ class Menü {
 
         when (userInputNewMenue) {
             1 -> produktUser.productUser()
-            2 -> reparaturAnleit.reparaturAnleitung()
-            3 -> reparaturShop.reparaturShop()
-            4 -> accountFromUser.accountUserVerwaltung()
+            2 -> anleitung.reparaturAnleitung()
+            3 -> accountFromUser.accountUserVerwaltung()
+            4 -> warenkorb.warenkorb()
             5 -> loggedIn = userLogOut.logOutUser()
+
         }
         return loggedIn
     }
@@ -69,16 +68,4 @@ class Menü {
 
     }
 
-    fun reparaturAnleitung() {
-
     }
-
-    fun reparaturShop() {
-
-    }
-
-
-
-
-}
-

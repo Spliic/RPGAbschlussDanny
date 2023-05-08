@@ -5,12 +5,4 @@ class Handydisplays(name: String, preis: Double, anzahl: Int, bewertung: String)
 ) {
 
 
-
-
-
-    fun getAnleitungDisplay() {
-        println("Ihre Anleitung")
-        // TODO: Hier eine Anleitung aufrufen
-    }
-
 }
