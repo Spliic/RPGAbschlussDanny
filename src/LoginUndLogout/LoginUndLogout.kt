@@ -1,4 +1,8 @@
+package LoginUndLogout
+import CYAN
 import Datenbank.Datenbank
+import RESET
+import menuFromStore
 
 class LoginUndLogout: Datenbank() {
 
@@ -11,11 +15,11 @@ class LoginUndLogout: Datenbank() {
         while (!check){
             while (countTry < 4) {
 
-                println("Bitte gebe dein Benutzernamen ein:")
+                println("${CYAN}Bitte gebe dein Benutzernamen ein:$RESET")
                 val userInputName = readln()
 
                 if (kunde.containsKey(userInputName)) {
-                    println("Bitte gebe dein Passwort ein")
+                    println("${CYAN}Bitte gebe dein Passwort ein:$RESET")
                     val userInputPassword = readln()
                     if (kunde[userInputName] == userInputPassword){
                         println("Sie wurden erfolgreich eingeloggt.")
@@ -53,11 +57,11 @@ class LoginUndLogout: Datenbank() {
         while (!logInHaendler){
             while (countTryHaendler < 4) {
 
-                println("Bitte gebe dein Benutzernamen ein:")
+                println("${CYAN}Bitte gebe dein Benutzernamen ein:$RESET")
                 val haendlerInputName = readln()
 
                 if (haendler.containsKey(haendlerInputName)) {
-                    println("Bitte gebe dein Passwort ein")
+                    println("${CYAN}Bitte gebe dein Passwort ein:$RESET")
                     val haendlerInputPassword = readln()
                     if (haendler[haendlerInputName] == haendlerInputPassword){
                         println("Sie wurden erfolgreich eingeloggt.")
@@ -84,9 +88,11 @@ class LoginUndLogout: Datenbank() {
         }
     }
 
-    fun logOutUser(){
-
-
+    fun logOutUser():Boolean{
+        println("Du wurdest erfolgreich ausgeloggt")
+        println()
+        menuFromStore()
+    return false
     }
 
 }
