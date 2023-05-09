@@ -41,7 +41,6 @@ class Accountverwaltung: Datenbank() {
         println("Ihr Konte mit dieser IBAN:$eingabeMethode wurde hinzugefügt")
         menu.menueUser()
 
-
     }
 
 
