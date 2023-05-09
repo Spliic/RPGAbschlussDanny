@@ -7,7 +7,7 @@ var warenkorb = mutableListOf<Ersatzteile>()
 var menu = Menü()
 
 
-open class Datenbank {
+open class Datenbank{
 
     var haendler = mutableMapOf<String, String>()
     var kunde = mutableMapOf<String, String>()
@@ -310,12 +310,3 @@ open class Datenbank {
     }
 
 }
-
-
-
-
-
-
-
-
-
