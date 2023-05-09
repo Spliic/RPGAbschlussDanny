@@ -37,18 +37,31 @@ fun main() {
                 \/             \/       \/     \/|__|       \/           
     $RESET""".trimIndent()
     )
-    while (true){
-        println("${CYAN}Bitte geben sie ihr Aktuelles Alter ein:$RESET (Mit Enter Bestätigen)")
-        var inputAlter = readln().toInt()
-        // Überprüfen ob Kunde 12 oder älter ist.
-        if (inputAlter >= 12) {
-            menuFromStore()
-        } else {
-            println("${CYAN}Zugriff wurde zum OnlineShop verweigert. Sie müssen mindestens 12 Jahre alt sein.$RESET")
+    /*Dieser Code prüft das Alter des Benutzers, bevor er den Zugriff zum Shop gewährt. Der Benutzer wird aufgefordert, sein Alter einzugeben.
+    Wenn das eingegebene Alter größer oder gleich 12 ist, wird das Menü des Online-Shops aufgerufen und die while-Schleife beendet.
+    Wenn das Alter kleiner als 12 ist, wird eine Fehlermeldung ausgegeben.
+
+     */
+
+    var counterForContinue = true
+    while (counterForContinue) {
+        try {
+            println("${CYAN}Bitte geben Sie Ihr aktuelles Alter ein:$RESET (Mit Enter bestätigen)")
+            var inputAlter = readln().toInt()
+            if (inputAlter >= 12) {
+                menuFromStore()
+                counterForContinue = false
+            } else {
+                println("${CYAN}Zugriff wurde zum Online-Shop verweigert. Sie müssen mindestens 12 Jahre alt sein.$RESET")
+            }
+        } catch (e: NumberFormatException) {
+            println("${CYAN}Bitte geben Sie eine gültige Zahl ein.$RESET")
         }
-
-
     }
+
+
+
+
 
     /*var check = true
     while (check == true){
@@ -57,9 +70,16 @@ fun main() {
 
      */
 
-
 }
 
+
+
+/*
+ Die Funktion menuFromStore öffnet ein Menü, in dem der Benutzer zwischen vier Optionen wählen kann.
+ Je nachdem, welche Option ausgewählt wird, ruft die Funktion eine entsprechende Methode auf, um das Konto zu erstellen oder den Benutzer einzuloggen.
+ Wenn der Benutzer erfolgreich eingeloggt ist, wird das Menü für den Benutzer geöffnet.
+ Die Funktion gibt true zurück, wenn der Benutzer eingeloggt ist, und false, wenn er nicht eingeloggt ist.
+ */
 fun menuFromStore(): Boolean {
     var userLoggedIn = false
     val kundenaccount = Kundenaccount()
