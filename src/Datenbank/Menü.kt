@@ -19,6 +19,7 @@ class Menü {
         var anleitung = Datenbank()
         var warenkorb = Datenbank()
 
+
         println(
             """
             ${CYAN}Hier kommt das weitere Menü,
@@ -38,7 +39,7 @@ class Menü {
             1 -> produktUser.productUser()
             2 -> anleitung.reparaturAnleitung()
             3 -> accountFromUser.accountUserVerwaltung()
-            4 -> warenkorb.warenkorb()
+            4 -> warenkorb.warenkorbAnzeigen()
             5 -> loggedIn = userLogOut.logOutUser()
 
         }
