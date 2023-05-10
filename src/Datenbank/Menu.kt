@@ -4,20 +4,21 @@ import Kunde.Accountverwaltung
 import LoginUndLogout.LoginUndLogout
 import RESET
 
-class Menü {
+class Menu {
 
     var zugriffZurDatenbank = Datenbank()
     var zugriffLogOut = LoginUndLogout()
+    var zugriffAccount = Accountverwaltung()
+
 
 
 
     fun menueUser():Boolean {
 
-        val produktUser = Menü()
+
         val accountFromUser = Accountverwaltung()
         val userLogOut = LoginUndLogout()
-        var anleitung = Datenbank()
-        var warenkorb = Datenbank()
+
 
 
         println(
@@ -36,10 +37,10 @@ class Menü {
         var loggedIn = true
 
         when (userInputNewMenue) {
-            1 -> produktUser.productUser()
-            2 -> anleitung.reparaturAnleitung()
+            1 -> productUser()
+            2 -> zugriffZurDatenbank.reparaturAnleitung()
             3 -> accountFromUser.accountUserVerwaltung()
-            4 -> warenkorb.warenkorbAnzeigen()
+            4 -> zugriffZurDatenbank.warenkorbAnzeigen()
             5 -> loggedIn = userLogOut.logOutUser()
 
         }
@@ -59,7 +60,10 @@ class Menü {
         """.trimIndent())
         var userInputNewMenue2 = readln().toInt()
         when (userInputNewMenue2) {
-            1 -> zugriffZurDatenbank.displayAnzeigeLassen()
+            1 -> {
+                zugriffZurDatenbank.displayAnzeigeLassen()
+                menueUser()
+            }
             2 -> zugriffZurDatenbank.akkuAnzeigenLassen()
             3 -> zugriffZurDatenbank.sonstigesWerkzeugAnzeigenLassen()
             4 -> login = zugriffLogOut.logOutUser()
@@ -69,6 +73,50 @@ class Menü {
 
     }
 
+    fun zahlungsMenu(){
+        println(
+            """
+            ${CYAN}Was Wollen sie als Nächstes tun?$RESET
+            [1] Produkte Bezahlen 
+            [2] Warenkorb leeren
+            [3] Zurück zum Menü
+            [4] Logout
+            Bitte Wählen sie eine Zahl von 1-4 (Mit Enter bestätigen)
+        """.trimIndent()
+        )
+        var inputZahlungsMenu = readln().toInt()
+        when (inputZahlungsMenu) {
+            1 -> zugriffAccount.zahlungCheckout()
+            2 -> zugriffZurDatenbank.warenkorbLeeren()
+            3 -> menueUser()
+        }
+    }
+
+    fun haendlerMenu(): Boolean{
+        var haendlerLoggin = true
+
+        println(
+            """
+            ${CYAN}Hier kommt das weitere Menü,
+            Was möchten sie hier tun?$RESET
+            [1] Produkte Bestellen
+            [2] Produkte Hinzufügen
+            [3] Produkte Löschen
+            [4] Ausloggen
+            Bitte Wählen sie eine Zahl von 1-4 (Mit Enter bestätigen)
+        """.trimIndent())
+        var haendlerInputMenu = readln().toInt()
+
+        when (haendlerInputMenu){
+            1 -> zugriffZurDatenbank.haendlerBestellung()
+            2 -> zugriffZurDatenbank.haendlerHinzufugen()
+            3 -> zugriffZurDatenbank.haendlerLoeschen()
+            4 -> zugriffLogOut.logOutUser()
+        }
+        return haendlerLoggin
+
+
+    }
 
 
 }
