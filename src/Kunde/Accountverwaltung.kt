@@ -2,7 +2,7 @@ package Kunde
 
 import CYAN
 import Datenbank.Datenbank
-import Datenbank.Menü
+import Datenbank.Menu
 import LoginUndLogout.LoginUndLogout
 import RESET
 
@@ -33,7 +33,7 @@ class Accountverwaltung: Datenbank() {
     }
 
     fun zahlungsmethodeHinzufügen(){
-        var menu = Menü()
+        var menu = Menu()
         println("Bitte geben sie ihre IBAN ein:(Mit Enter bestätigen)")
 
         var eingabeMethode = readln()
@@ -43,5 +43,71 @@ class Accountverwaltung: Datenbank() {
 
     }
 
+    fun zahlungCheckout(){
+        var logOut = LoginUndLogout()
+        var zuruck = Menu()
 
-}
+
+        println(
+            """
+            ${CYAN}Mit Welcher Zahlungsmethode wollen sie Bezahlen?:$RESET
+            [1] Bankeinzug/Lastschrift
+            [2] PayPal
+            [3] Logout
+            Bitte Wählen sie eine Zahl von 1-3 (Mit Enter bestätigen)
+        """.trimIndent())
+
+        var checkoutUserInput = readln().toInt()
+        when(checkoutUserInput){
+            1 -> zahlungBankeinzug()
+            2 -> zahlungPayPal()
+            3 -> zuruck.menueUser()
+            4 -> logOut.logOutUser()
+
+        }
+    }
+
+    fun zahlungBankeinzug(){
+
+        var datenbank = Datenbank()
+        var backmenu = Menu()
+        var total = 100
+        var progress = 0
+
+        while (progress <= total) {
+            print("$CYAN\rZahlung wird bearbeitet...$progress%$RESET")
+            progress++
+            Thread.sleep(30)
+            }
+        println()
+        println("Zahlung mit Bankeinzug/Lastschrift war erfolgreich. \nVielen Dank für ihren Einkauf.")
+        datenbank.bestandReduzieren()
+        backmenu.menueUser()
+
+
+
+    }
+
+    fun zahlungPayPal(){
+        var backmenu = Menu()
+        var datenbank = Datenbank()
+        var total = 100
+        var progress = 0
+
+        while (progress <= total) {
+            print("$CYAN\rZahlung wird bearbeitet...$progress%$RESET")
+            progress++
+            Thread.sleep(30)
+        }
+        println()
+        println("Zahlung mit PayPal war erfolgreich. \nVielen Dank für ihren Einkauf.")
+        datenbank.bestandReduzieren()
+        backmenu.menueUser()
+
+
+
+    }
+
+
+
+    }

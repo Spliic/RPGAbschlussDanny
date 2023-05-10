@@ -3,8 +3,10 @@ import CYAN
 import LoginUndLogout.LoginUndLogout
 import Produkte.*
 import RESET
-var warenkorb = mutableListOf<Ersatzteile>()
-var menu = Menü()
+import menu
+import warenkorb
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 
 open class Datenbank{
@@ -25,19 +27,20 @@ open class Datenbank{
             "Kevin" to "Kevin123",
             "Dimi" to "Dimi123"
         )
+
     }
 
     var ersatzTeilSortimentDisplay = mutableListOf<Ersatzteile>(
-        Handydisplays("iPhone 14 Pro Display", 139.99, 1, "8/10"),
-        Handydisplays("iPhone 13 Pro Display", 119.99, 1, "7/10"),
-        Handydisplays("iPhone 12 Pro Display", 99.99, 1, "9/10"),
-        Handydisplays("iPhone 11 Pro Display", 79.99, 1, "6/10"),
-        Handydisplays("iPhone X  Display", 69.99, 1, "4/10")
+        Handydisplays("iPhone 14 Pro Display", 139.99, 0, "8/10"),
+        Handydisplays("iPhone 13 Pro Display", 119.99, 8, "7/10"),
+        Handydisplays("iPhone 12 Pro Display", 99.99, 5, "9/10"),
+        Handydisplays("iPhone 11 Pro Display", 79.99, 2, "6/10"),
+        Handydisplays("iPhone X  Display", 69.99, 15, "4/10")
     )
 
     var anleitungHandys = mutableListOf<Ersatzteile>(
         Handyanleitung("iPhone 14 Pro Display + Akku Reparatur Anleitung ", 24.99, 1, "8/10"),
-        Handyanleitung("iPhone 13 Pro Display + Akku Reparatur Anleitung ", 19.99, 1, "7/10"),
+        Handyanleitung("iPhone 13 Pro Display + Akku Reparatur Anleitung ", 19.99, 0, "7/10"),
         Handyanleitung("iPhone 12 Pro Display + Akku Reparatur Anleitung ", 14.99, 1, "6/10"),
         Handyanleitung("iPhone 11 Pro Display + Akku Reparatur Anleitung ", 9.99, 1, "8/10"),
         Handyanleitung("iPhone X Display + Akku Reparatur Anleitung ", 4.99, 1, "10/10"),
@@ -46,7 +49,7 @@ open class Datenbank{
 
     var ersatzTeilSortimentAkku = mutableListOf<Ersatzteile>(
         Handyakkus("iPhone 14 Pro Akku", 69.99, 1, "9/10"),
-        Handyakkus("iPhone 13 Pro Akku", 59.99, 1, "5/10"),
+        Handyakkus("iPhone 13 Pro Akku", 59.99, 0, "5/10"),
         Handyakkus("iPhone 12 Pro Akku", 49.99, 1, "7/10"),
         Handyakkus("iPhone 11 Pro Akku", 39.99, 1, "3/10"),
         Handyakkus("iPhone X  Akku", 29.99, 1, "1/10")
@@ -63,13 +66,15 @@ open class Datenbank{
         Handywerkzeug(
             "Schraubendreher Set",
             54.99,
-            1,
+            0,
             "Dieses Set enthält unsere 15 nützlichsten Schraubendreher mit fester Klinge"
         )
     )
 
+
+
     fun displayAnzeigeLassen() {
-        var productmenu = Menü()
+
         var logOut = LoginUndLogout()
 
         println(
@@ -88,7 +93,13 @@ open class Datenbank{
                 """
                 Artikel ${display + 1}: Name: ${ersatzTeilSortimentDisplay[display].name}
                            Preis: ${ersatzTeilSortimentDisplay[display].preis}€
-                           Anzahl: ${ersatzTeilSortimentDisplay[display].anzahl}
+                           ${
+                               if (ersatzTeilSortimentDisplay[display].anzahl != 0){
+                                   "Verfügbar: ${ersatzTeilSortimentDisplay[display].anzahl}"
+                               } else {
+                                   "Artikel nicht mehr Verfügbar."
+                               }
+                           }
                            Bewertung: ${ersatzTeilSortimentDisplay[display].bewertung}
             """.trimIndent()
             )
@@ -109,25 +120,55 @@ open class Datenbank{
         )
         var userInputProductMenu = readln().toInt()
         when (userInputProductMenu) {
-            1 -> println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[0].name} in den Warenkorb gelegt")
-            2 -> println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[1].name} in den Warenkorb gelegt")
-            3 -> println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[2].name} in den Warenkorb gelegt")
-            4 -> println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[3].name} in den Warenkorb gelegt")
-            5 -> println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[4].name} in den Warenkorb gelegt")
+            1 -> {
+                if (ersatzTeilSortimentDisplay[0].anzahl == 0){
+                    println("Artikel ist nicht verfügbar.")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[0].name} in den Warenkorb gelegt")
+                }
+            }
+            2 -> {
+                if (ersatzTeilSortimentDisplay[1].anzahl == 0){
+                    println("Artikel ist nicht verfügbar.")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[1].name} in den Warenkorb gelegt")
+                }
+            }
+            3 -> {
+                if (ersatzTeilSortimentDisplay[2].anzahl == 0){
+                    println("Artikel ist nicht verfügbar.")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[2].name} in den Warenkorb gelegt")
+                }
+            }
+            4 -> {
+                if (ersatzTeilSortimentDisplay[3].anzahl == 0){
+                    println("Artikel ist nicht verfügbar.")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[3].name} in den Warenkorb gelegt")
+                }
+            }
+            5 -> {
+                if (ersatzTeilSortimentDisplay[4].anzahl == 0){
+                    println("Artikel ist nicht verfügbar.")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[4].name} in den Warenkorb gelegt")
+                }
+            }
             6 -> logOut.logOutUser()
         }
         warenkorbbefuellen(ersatzTeilSortimentDisplay[userInputProductMenu - 1])
 
 
         println("Wollen sie noch weitere Produkte kaufen?")
-        productmenu.menueUser()
+        //productmenu.menueUser()
 
 
     }
 
     fun akkuAnzeigenLassen() {
         var logOut = LoginUndLogout()
-        var produktmenu = Menü()
+        var produktmenu = Menu()
         println(
             """
                     __    __          
@@ -144,7 +185,13 @@ open class Datenbank{
                 """
                 Artikel ${akku + 1}: Name: ${ersatzTeilSortimentAkku[akku].name}
                            Preis: ${ersatzTeilSortimentAkku[akku].preis}€
-                           Anzahl: ${ersatzTeilSortimentAkku[akku].anzahl}
+                           ${
+                               if (ersatzTeilSortimentAkku[akku].anzahl != 0){
+                                "Verfügbar: ${ersatzTeilSortimentAkku[akku].anzahl}"
+                                } else {
+                                    "Artikel nicht mehr Verfügbar."
+                                }
+                           }
                            Bewertung: ${ersatzTeilSortimentAkku[akku].bewertung}
             """.trimIndent()
             )
@@ -163,11 +210,41 @@ open class Datenbank{
         )
         var userInputProductMenu = readln().toInt()
         when (userInputProductMenu) {
-            1 -> println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[0].name} in den Warenkorb gelegt")
-            2 -> println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[1].name} in den Warenkorb gelegt")
-            3 -> println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[2].name} in den Warenkorb gelegt")
-            4 -> println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[3].name} in den Warenkorb gelegt")
-            5 -> println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[4].name} in den Warenkorb gelegt")
+            1 -> {
+                if (ersatzTeilSortimentAkku[0].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[0].name} in den Warenkorb gelegt")
+                }
+            }
+            2 -> {
+                if (ersatzTeilSortimentAkku[1].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[1].name} in den Warenkorb gelegt")
+                }
+            }
+            3 -> {
+                if (ersatzTeilSortimentAkku[2].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[2].name} in den Warenkorb gelegt")
+                }
+            }
+            4 -> {
+                if (ersatzTeilSortimentAkku[3].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[3].name} in den Warenkorb gelegt")
+                }
+            }
+            5 -> {
+                if (ersatzTeilSortimentAkku[4].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[4].name} in den Warenkorb gelegt")
+                }
+            }
             6 -> logOut.logOutUser()
         }
         warenkorbbefuellen(ersatzTeilSortimentAkku[userInputProductMenu - 1])
@@ -177,7 +254,7 @@ open class Datenbank{
 
     fun sonstigesWerkzeugAnzeigenLassen() {
         var logOut = LoginUndLogout()
-        var produktmenu = Menü()
+        var produktmenu = Menu()
         println(
             """
                                   __                                
@@ -194,7 +271,14 @@ open class Datenbank{
                 """
                 Artikel ${werkzeug + 1}: Name: ${ersatzteilWerkzeug[werkzeug].name}
                            Preis: ${ersatzteilWerkzeug[werkzeug].preis}€
-                           Anzahl: ${ersatzteilWerkzeug[werkzeug].anzahl}
+                           ${
+                                if (ersatzteilWerkzeug[werkzeug].anzahl != 0){
+                                "Verfügbar: ${ersatzteilWerkzeug[werkzeug].anzahl}"
+                                } else {
+                                    "Artikel nicht mehr Verfügbar."
+                                }
+                           }
+                           : ${ersatzteilWerkzeug[werkzeug].anzahl}
                            Beschreibung: ${ersatzteilWerkzeug[werkzeug].bewertung}
             """.trimIndent()
             )
@@ -211,9 +295,27 @@ open class Datenbank{
         )
         var userInputProductMenu = readln().toInt()
         when (userInputProductMenu) {
-            1 -> println("Sie haben den Artikel: ${ersatzteilWerkzeug[0].name} in den Warenkorb gelegt")
-            2 -> println("Sie haben den Artikel: ${ersatzteilWerkzeug[1].name} in den Warenkorb gelegt")
-            3 -> println("Sie haben den Artikel: ${ersatzteilWerkzeug[2].name} in den Warenkorb gelegt")
+            1 -> {
+                if (ersatzteilWerkzeug[0].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzteilWerkzeug[0].name} in den Warenkorb gelegt")
+                }
+            }
+            2 -> {
+                if (ersatzteilWerkzeug[1].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzteilWerkzeug[1].name} in den Warenkorb gelegt")
+                }
+            }
+            3 -> {
+                if (ersatzteilWerkzeug[2].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${ersatzteilWerkzeug[2].name} in den Warenkorb gelegt")
+                }
+            }
             4 -> logOut.logOutUser()
         }
         warenkorbbefuellen(ersatzteilWerkzeug[userInputProductMenu - 1])
@@ -225,7 +327,7 @@ open class Datenbank{
     fun reparaturAnleitung() {
 
         var logOut = LoginUndLogout()
-        var produktmenu = Menü()
+        var produktmenu = Menu()
         println(
             """
                            _____         .__         .__  __                        
@@ -241,7 +343,13 @@ open class Datenbank{
                 """
                 Artikel ${anleitung + 1}: Name: ${anleitungHandys[anleitung].name}
                            Preis: ${anleitungHandys[anleitung].preis}€
-                           Anzahl: ${anleitungHandys[anleitung].anzahl}
+                           ${
+                                if (anleitungHandys[anleitung].anzahl != 0){
+                                 "Verfügbar: ${anleitungHandys[anleitung].anzahl}"
+                                } else {
+                                     "Artikel nicht mehr Verfügbar."
+                                }
+                           }
                            Bewertung: ${anleitungHandys[anleitung].bewertung}
             """.trimIndent()
             )
@@ -262,11 +370,41 @@ open class Datenbank{
 
 
         when (userInputProductMenu) {
-            1 -> println("Sie haben den Artikel: ${anleitungHandys[0].name} in den Warenkorb gelegt")
-            2 -> println("Sie haben den Artikel: ${anleitungHandys[1].name} in den Warenkorb gelegt")
-            3 -> println("Sie haben den Artikel: ${anleitungHandys[2].name} in den Warenkorb gelegt")
-            4 -> println("Sie haben den Artikel: ${anleitungHandys[3].name} in den Warenkorb gelegt")
-            5 -> println("Sie haben den Artikel: ${anleitungHandys[4].name} in den Warenkorb gelegt")
+            1 -> {
+                if (anleitungHandys[0].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${anleitungHandys[0].name} in den Warenkorb gelegt")
+                }
+            }
+            2 -> {
+                if (anleitungHandys[1].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${anleitungHandys[1].name} in den Warenkorb gelegt")
+                }
+            }
+            3 -> {
+                if (anleitungHandys[2].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${anleitungHandys[2].name} in den Warenkorb gelegt")
+                }
+            }
+            4 -> {
+                if (anleitungHandys[3].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${anleitungHandys[3].name} in den Warenkorb gelegt")
+                }
+            }
+            5 -> {
+                if (anleitungHandys[4].anzahl == 0){
+                    println("Artikel ist nicht verfügbar")
+                } else {
+                    println("Sie haben den Artikel: ${anleitungHandys[4].name} in den Warenkorb gelegt")
+                }
+            }
             6 -> logOut.logOutUser()
         }
         warenkorbbefuellen(anleitungHandys[userInputProductMenu - 1])
@@ -295,18 +433,72 @@ open class Datenbank{
             println("Gesamtpreis: $gesamtPreis€")
 
         }
-        menu.menueUser()
+        menu.zahlungsMenu()
 
     }
 
-    fun warenkorbPreis(): Double {
+    fun warenkorbPreis(): BigDecimal {
         var gesamtPreis = 0.0
         for (produkt in warenkorb) {
             gesamtPreis += produkt.preis
         }
-        return gesamtPreis
+        val dezimal = BigDecimal(gesamtPreis).setScale(2,RoundingMode.HALF_EVEN)
+        return dezimal
+
 
 
     }
+
+    fun warenkorbLeeren(){
+        warenkorb.clear()
+        println("Ihr Warenkorb wurde erfolgreich geleert")
+        menu.menueUser()
+
+    }
+
+    fun bestandReduzieren(){
+
+        for (produkt in warenkorb){
+
+            if (produkt is Handydisplays){
+                for (teil in ersatzTeilSortimentDisplay){
+                    if (teil.name == produkt.name){
+                        var index = ersatzTeilSortimentDisplay.indexOf(teil)
+                        ersatzTeilSortimentDisplay[index].anzahl -= 1
+                        println("Test")
+
+                    }
+                }
+
+                //var indexFromDisplay = ersatzTeilSortimentDisplay.indexOf(produkt)
+                //ersatzTeilSortimentDisplay[indexFromDisplay].anzahl -= 1
+
+
+            } else if (produkt in ersatzTeilSortimentAkku){
+                var indexFromAkku = ersatzTeilSortimentAkku.indexOf(produkt)
+                ersatzTeilSortimentAkku[indexFromAkku].anzahl -= 1
+
+            } else if (produkt in ersatzteilWerkzeug){
+                var indexFromWerkzeug = ersatzteilWerkzeug.indexOf(produkt)
+                ersatzteilWerkzeug[indexFromWerkzeug].anzahl -= 1
+            }
+
+        }
+    }
+
+    fun haendlerBestellung(){
+
+
+    }
+
+    fun haendlerHinzufugen(){
+
+    }
+
+    fun haendlerLoeschen(){
+
+
+    }
+
 
 }
