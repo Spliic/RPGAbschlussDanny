@@ -1,7 +1,13 @@
+
 import Kunde.Kundenaccount
-import Datenbank.Menü
+import Datenbank.Menu
 import LoginUndLogout.LoginUndLogout
+import Produkte.Ersatzteile
 import haendler.Haendleraccount
+
+var warenkorb = mutableListOf<Ersatzteile>()
+var menu = Menu()
+
 
 var CYAN = "\u001B[36m"
 var RESET = "\u001B[0m"
@@ -16,9 +22,7 @@ fun main() {
 }
 
 
-
-
-// Funktion für Logoausgabe
+// Funktion für logoausgabe
 fun printLogo(){
     println(
         """$CYAN    
@@ -75,20 +79,19 @@ fun altersAbfrage(){
 }
 
 /*
- Die Funktion menuFromStore öffnet ein Menü, in dem der Benutzer zwischen vier Optionen wählen kann.
- Je nachdem, welche Option ausgewählt wird, ruft die Funktion eine entsprechende Methode auf, um das Konto zu erstellen oder den Benutzer einzuloggen.
- Wenn der Benutzer erfolgreich eingeloggt ist, wird das Menü für den Benutzer geöffnet.
+ Die Funktion menuFromStore öffnet ein Menü, in dem der Benutzer/Händler zwischen Optionen wählen kann.
+ Je nachdem, welche Option ausgewählt wird, ruft die Funktion eine entsprechende Methode auf, um das Konto zu erstellen oder den Benutzer/Händler einzuloggen.
+ Wenn der Benutzer/Händler erfolgreich eingeloggt ist, wird das Menü für den Benutzer/Händler geöffnet.
  Die Funktion gibt true zurück, wenn der Benutzer eingeloggt ist, und false, wenn er nicht eingeloggt ist.
  */
 fun menuFromStore(): Boolean {
-    var userLoggedIn = false
+    var login = false
     val kundenaccount = Kundenaccount()
     val haendleraccount = Haendleraccount()
     val loginUndLogoutUser = LoginUndLogout()
     val loginUndLogoutHaendler = LoginUndLogout()
-    val menueUser = Menü()
-
-
+    val menueUser = Menu()
+    val menueHaendler = Menu()
 
     println(
         """
@@ -104,17 +107,21 @@ fun menuFromStore(): Boolean {
     when (userInputMenu) {
         1 -> kundenaccount.newAccountForUser()
         2 -> haendleraccount.newAccountForHaendler()
-        3 -> userLoggedIn = loginUndLogoutUser.logInMenueUser()
-        4 -> loginUndLogoutHaendler.logInMenueHaendler()
+        3 -> login = loginUndLogoutUser.logInMenueUser()
+        4 -> login = loginUndLogoutHaendler.logInMenueHaendler()
     }
     println()
 
-    // Wenn Kunde eingeloggt ist, wird Menü für den User geöffnet
-    if (userLoggedIn) {
-
-        userLoggedIn = menueUser.menueUser()
+    // Wenn Kunde/Händler eingeloggt ist, wird Menü für den User geöffnet
+    if (login) {
+        if (userInputMenu == 3){
+            login = menueUser.menueUser()
+        } else {
+            menueHaendler.haendlerMenu()
+        }
     }
-    return userLoggedIn
+    return login
+
 }
 
 

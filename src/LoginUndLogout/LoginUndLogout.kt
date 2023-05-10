@@ -50,7 +50,7 @@ class LoginUndLogout: Datenbank() {
         return logInUser
     }
 
-    fun logInMenueHaendler(){
+    fun logInMenueHaendler(): Boolean{
         var logInHaendler = false
         var countTryHaendler = 1
 
@@ -68,6 +68,7 @@ class LoginUndLogout: Datenbank() {
                         println("Sie wurden erfolgreich eingeloggt.")
                         logInHaendler = true
                         countTryHaendler = 5
+                        return true
                     } else {
                         println("Sie haben das Passwort falsch eingegeben.")
                         countTryHaendler++
@@ -87,6 +88,8 @@ class LoginUndLogout: Datenbank() {
         if (countTryHaendler == 4) {
             println("Maximale Anzahl an versuchen verbraucht. Bitte Kundensupport anrufen.")
         }
+
+       return false
     }
 
     fun logOutUser():Boolean{
