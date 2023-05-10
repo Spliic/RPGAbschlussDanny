@@ -38,7 +38,10 @@ class Menu {
 
         when (userInputNewMenue) {
             1 -> productUser()
-            2 -> zugriffZurDatenbank.reparaturAnleitung()
+            2 -> {
+                zugriffZurDatenbank.reparaturAnleitung()
+                menueUser()
+            }
             3 -> accountFromUser.accountUserVerwaltung()
             4 -> zugriffZurDatenbank.warenkorbAnzeigen()
             5 -> loggedIn = userLogOut.logOutUser()
@@ -64,8 +67,14 @@ class Menu {
                 zugriffZurDatenbank.displayAnzeigeLassen()
                 menueUser()
             }
-            2 -> zugriffZurDatenbank.akkuAnzeigenLassen()
-            3 -> zugriffZurDatenbank.sonstigesWerkzeugAnzeigenLassen()
+            2 -> {
+                zugriffZurDatenbank.akkuAnzeigenLassen()
+                menueUser()
+            }
+            3 -> {
+                zugriffZurDatenbank.sonstigesWerkzeugAnzeigenLassen()
+                menueUser()
+            }
             4 -> login = zugriffLogOut.logOutUser()
         }
         return login
@@ -86,8 +95,14 @@ class Menu {
         )
         var inputZahlungsMenu = readln().toInt()
         when (inputZahlungsMenu) {
-            1 -> zugriffAccount.zahlungCheckout()
-            2 -> zugriffZurDatenbank.warenkorbLeeren()
+            1 -> {
+                zugriffAccount.zahlungCheckout(zugriffZurDatenbank)
+                menueUser()
+            }
+            2 -> {
+                zugriffZurDatenbank.warenkorbLeeren()
+                menueUser()
+            }
             3 -> menueUser()
         }
     }

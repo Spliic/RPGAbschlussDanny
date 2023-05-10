@@ -161,14 +161,12 @@ open class Datenbank{
 
 
         println("Wollen sie noch weitere Produkte kaufen?")
-        //productmenu.menueUser()
-
 
     }
 
     fun akkuAnzeigenLassen() {
         var logOut = LoginUndLogout()
-        var produktmenu = Menu()
+
         println(
             """
                     __    __          
@@ -249,12 +247,12 @@ open class Datenbank{
         }
         warenkorbbefuellen(ersatzTeilSortimentAkku[userInputProductMenu - 1])
         println("Wollen sie noch weitere Produkte kaufen?")
-        produktmenu.menueUser()
+
     }
 
     fun sonstigesWerkzeugAnzeigenLassen() {
         var logOut = LoginUndLogout()
-        var produktmenu = Menu()
+
         println(
             """
                                   __                                
@@ -320,14 +318,14 @@ open class Datenbank{
         }
         warenkorbbefuellen(ersatzteilWerkzeug[userInputProductMenu - 1])
         println("Wollen sie noch weitere Produkte kaufen?")
-        produktmenu.menueUser()
+
 
     }
 
     fun reparaturAnleitung() {
 
         var logOut = LoginUndLogout()
-        var produktmenu = Menu()
+
         println(
             """
                            _____         .__         .__  __                        
@@ -409,7 +407,7 @@ open class Datenbank{
         }
         warenkorbbefuellen(anleitungHandys[userInputProductMenu - 1])
         println("Wollen sie noch weitere Produkte kaufen?")
-        produktmenu.menueUser()
+
     }
 
     fun warenkorbbefuellen(produkt: Ersatzteile): MutableList<Ersatzteile> {
@@ -452,7 +450,7 @@ open class Datenbank{
     fun warenkorbLeeren(){
         warenkorb.clear()
         println("Ihr Warenkorb wurde erfolgreich geleert")
-        menu.menueUser()
+
 
     }
 
@@ -465,22 +463,32 @@ open class Datenbank{
                     if (teil.name == produkt.name){
                         var index = ersatzTeilSortimentDisplay.indexOf(teil)
                         ersatzTeilSortimentDisplay[index].anzahl -= 1
-                        println("Test")
-
                     }
                 }
 
-                //var indexFromDisplay = ersatzTeilSortimentDisplay.indexOf(produkt)
-                //ersatzTeilSortimentDisplay[indexFromDisplay].anzahl -= 1
+            } else if (produkt is Handyakkus){
+                for (teilAkku in ersatzTeilSortimentAkku){
+                    if (teilAkku.name == produkt.name){
+                        var indexFromAkku = ersatzTeilSortimentAkku.indexOf(teilAkku)
+                        ersatzTeilSortimentAkku[indexFromAkku].anzahl -= 1
+                    }
+                }
 
+            } else if (produkt is Handywerkzeug){
+                for (teilWerkzeug in ersatzteilWerkzeug){
+                    if (teilWerkzeug.name == produkt.name){
+                        var indexFromWerkzeug = ersatzteilWerkzeug.indexOf(teilWerkzeug)
+                        ersatzteilWerkzeug[indexFromWerkzeug].anzahl -= 1
+                    }
+                }
 
-            } else if (produkt in ersatzTeilSortimentAkku){
-                var indexFromAkku = ersatzTeilSortimentAkku.indexOf(produkt)
-                ersatzTeilSortimentAkku[indexFromAkku].anzahl -= 1
-
-            } else if (produkt in ersatzteilWerkzeug){
-                var indexFromWerkzeug = ersatzteilWerkzeug.indexOf(produkt)
-                ersatzteilWerkzeug[indexFromWerkzeug].anzahl -= 1
+            } else if (produkt is Handyanleitung){
+                for (teilAnleitung in anleitungHandys){
+                    if (teilAnleitung.name == produkt.name){
+                        var indexFromAnleitung = anleitungHandys.indexOf(teilAnleitung)
+                        anleitungHandys[indexFromAnleitung].anzahl -= 1
+                    }
+                }
             }
 
         }

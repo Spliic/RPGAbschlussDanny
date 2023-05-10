@@ -43,9 +43,9 @@ class Accountverwaltung: Datenbank() {
 
     }
 
-    fun zahlungCheckout(){
+    fun zahlungCheckout(datenbank : Datenbank){
         var logOut = LoginUndLogout()
-        var zuruck = Menu()
+
 
 
         println(
@@ -59,18 +59,15 @@ class Accountverwaltung: Datenbank() {
 
         var checkoutUserInput = readln().toInt()
         when(checkoutUserInput){
-            1 -> zahlungBankeinzug()
-            2 -> zahlungPayPal()
-            3 -> zuruck.menueUser()
-            4 -> logOut.logOutUser()
+            1 -> zahlungBankeinzug(datenbank)
+            2 -> zahlungPayPal(datenbank)
+            3 -> logOut.logOutUser()
 
         }
     }
 
-    fun zahlungBankeinzug(){
+    fun zahlungBankeinzug(datenbank: Datenbank) {
 
-        var datenbank = Datenbank()
-        var backmenu = Menu()
         var total = 100
         var progress = 0
 
@@ -82,15 +79,14 @@ class Accountverwaltung: Datenbank() {
         println()
         println("Zahlung mit Bankeinzug/Lastschrift war erfolgreich. \nVielen Dank für ihren Einkauf.")
         datenbank.bestandReduzieren()
-        backmenu.menueUser()
+
 
 
 
     }
 
-    fun zahlungPayPal(){
-        var backmenu = Menu()
-        var datenbank = Datenbank()
+    fun zahlungPayPal(datenbank: Datenbank){
+
         var total = 100
         var progress = 0
 
@@ -102,7 +98,7 @@ class Accountverwaltung: Datenbank() {
         println()
         println("Zahlung mit PayPal war erfolgreich. \nVielen Dank für ihren Einkauf.")
         datenbank.bestandReduzieren()
-        backmenu.menueUser()
+
 
 
 
