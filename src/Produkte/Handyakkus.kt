@@ -5,9 +5,14 @@ class Handyakkus(name: String, preis: Double, anzahl: Int, bewertung: String) :E
 ) {
 
 
-    fun getAnleitungDisplay() {
-        println("Ihre Anleitung")
-        // TODO: Hier eine AnleitungAkkus aufrufen
+    fun preisAendern(neuerpreis: Double){
+        this.preis = neuerpreis
+
+    }
+
+    fun anzahlAendern(anzahlVerkaufte: Int){
+
+        this.preis = this.preis - anzahlVerkaufte
     }
 
 
