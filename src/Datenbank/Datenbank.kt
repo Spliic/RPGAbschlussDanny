@@ -276,7 +276,6 @@ open class Datenbank{
                                     "Artikel nicht mehr Verfügbar."
                                 }
                            }
-                           : ${ersatzteilWerkzeug[werkzeug].anzahl}
                            Beschreibung: ${ersatzteilWerkzeug[werkzeug].bewertung}
             """.trimIndent()
             )
