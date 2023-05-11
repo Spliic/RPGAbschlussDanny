@@ -1,4 +1,5 @@
 
+import Datenbank.Datenbank
 import Kunde.Kundenaccount
 import Datenbank.Menu
 import LoginUndLogout.LoginUndLogout
@@ -6,6 +7,7 @@ import Produkte.Ersatzteile
 import haendler.Haendleraccount
 var warenkorb = mutableListOf<Ersatzteile>()
 var menu = Menu()
+var datenbank = Datenbank()
 var CYAN = "\u001B[36m"
 var RESET = "\u001B[0m"
 
@@ -13,6 +15,10 @@ fun main() {
 
     printLogo()
     altersAbfrage()
+    while (true){
+        menuFromStore()
+    }
+
 
 }
 
@@ -61,7 +67,6 @@ fun altersAbfrage(){
             println("${CYAN}Bitte geben Sie Ihr aktuelles Alter ein:$RESET (Mit Enter bestätigen)")
             var inputAlter = readln().toInt()
             if (inputAlter >= 12) {
-                menuFromStore()
                 counterForContinue = false
             } else {
                 println("${CYAN}Zugriff wurde zum Online-Shop verweigert. Sie müssen mindestens 12 Jahre alt sein.$RESET")
@@ -102,9 +107,12 @@ fun menuFromStore(): Boolean {
     )
     var userInputMenu = readln().toInt()
     when (userInputMenu) {
-        1 -> kundenaccount.newAccountForUser()
+        1 -> {
+            kundenaccount.newAccountForUser(datenbank)
+
+        }
         2 -> haendleraccount.newAccountForHaendler()
-        3 -> login = loginUndLogoutUser.logInMenueUser()
+        3 -> login = loginUndLogoutUser.logInMenueUser(datenbank)
         4 -> login = loginUndLogoutHaendler.logInMenueHaendler()
     }
     println()
