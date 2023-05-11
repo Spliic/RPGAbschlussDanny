@@ -1,5 +1,4 @@
 package Kunde
-
 import CYAN
 import Datenbank.Datenbank
 import Datenbank.Menu
@@ -9,6 +8,10 @@ import RESET
 class Accountverwaltung: Datenbank() {
 
 
+    /*
+    Diese Funktion implementiert die Account-Verwaltung.
+    Sie fordert den Benutzer auf, entweder eine Zahlungsmethode hinzuzufügen oder sich auszuloggen.
+     */
     open fun accountUserVerwaltung(){
 
         var logout = LoginUndLogout()
@@ -32,6 +35,10 @@ class Accountverwaltung: Datenbank() {
 
     }
 
+
+    /*
+    Sobald der Benutzer seine IBAN eingegeben hat, wird eine Bestätigungsmeldung ausgegeben, dass seine Kontodaten erfolgreich hinzugefügt wurden.
+     */
     fun zahlungsmethodeHinzufügen(){
         var menu = Menu()
         println("Bitte geben sie ihre IBAN ein:(Mit Enter bestätigen)")
@@ -43,10 +50,12 @@ class Accountverwaltung: Datenbank() {
 
     }
 
+
+    /*
+    Die Funktion zahlungCheckout() zeigt dem Benutzer eine Liste von verfügbaren Zahlungsmethoden an und fordert ihn auf, eine auszuwählen
+     */
     fun zahlungCheckout(datenbank : Datenbank){
         var logOut = LoginUndLogout()
-
-
 
         println(
             """
@@ -66,6 +75,12 @@ class Accountverwaltung: Datenbank() {
         }
     }
 
+
+    /*
+    Diese Funktion führt eine Zahlung durch, wenn der Benutzer Bankeinzug als Zahlungsmethode gewählt hat.
+    Die Funktion verwendet eine einfache Schleife, um einen Fortschrittsbalken für die Zahlungsverarbeitung anzuzeigen.
+    Anschließend wird der Bestand reduziert und der Warenkorb geleert.
+     */
     fun zahlungBankeinzug(datenbank: Datenbank) {
 
         var total = 100
@@ -81,11 +96,14 @@ class Accountverwaltung: Datenbank() {
         datenbank.bestandReduzieren()
         warenkorbLeeren()
 
-
-
-
     }
 
+
+    /*
+    Diese Funktion führt eine Zahlung durch, wenn der Benutzer PayPal gewählt hat.
+    Die Funktion verwendet eine einfache Schleife, um einen Fortschrittsbalken für die Zahlungsverarbeitung anzuzeigen.
+    Anschließend wird der Bestand reduziert und der Warenkorb geleert.
+     */
     fun zahlungPayPal(datenbank: Datenbank){
 
         var total = 100

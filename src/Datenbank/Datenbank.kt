@@ -11,10 +11,13 @@ import java.math.RoundingMode
 
 open class Datenbank{
 
+    // Hier werden 2 Maps erstellt die jeweils den Benutzernamen und Passwort erhalten
     var haendler = mutableMapOf<String, String>()
     var kunde = mutableMapOf<String, String>()
 
 
+
+    // Die Init funktion initialisiert die Listen mit den Benutzernamen und Passwörtern
     init {
         this.haendler = mutableMapOf(
             "Oliver" to "Oliver123",
@@ -30,6 +33,12 @@ open class Datenbank{
 
     }
 
+
+    /*
+    Hier wird eine Liste von Handydisplays erstellt, die später im Code verwendet wird, um
+    das Sortiment an verfügbaren Ersatzteilen anzuzeigen und auszuwählen
+     */
+
     var ersatzTeilSortimentDisplay = mutableListOf<Ersatzteile>(
         Handydisplays("iPhone 14 Pro Display", 139.99, 0, "8/10"),
         Handydisplays("iPhone 13 Pro Display", 119.99, 8, "7/10"),
@@ -37,6 +46,12 @@ open class Datenbank{
         Handydisplays("iPhone 11 Pro Display", 79.99, 2, "6/10"),
         Handydisplays("iPhone X  Display", 69.99, 15, "4/10")
     )
+
+
+    /*
+    Hier wird eine Liste von anleitungHandys erstellt, die später im Code verwendet wird, um
+    das Sortiment an verfügbaren Anleitungen anzuzeigen und auszuwählen
+     */
 
     var anleitungHandys = mutableListOf<Ersatzteile>(
         Handyanleitung("iPhone 14 Pro Display + Akku Reparatur Anleitung ", 24.99, 1, "8/10"),
@@ -47,6 +62,12 @@ open class Datenbank{
 
         )
 
+
+    /*
+    Hier wird eine Liste von ersatzAkkus erstellt, die später im Code verwendet wird, um
+    das Sortiment an verfügbaren ersatzAkkus anzuzeigen und auszuwählen
+     */
+
     var ersatzTeilSortimentAkku = mutableListOf<Ersatzteile>(
         Handyakkus("iPhone 14 Pro Akku", 69.99, 1, "9/10"),
         Handyakkus("iPhone 13 Pro Akku", 59.99, 0, "5/10"),
@@ -54,6 +75,11 @@ open class Datenbank{
         Handyakkus("iPhone 11 Pro Akku", 39.99, 1, "3/10"),
         Handyakkus("iPhone X  Akku", 29.99, 1, "1/10")
     )
+
+    /*
+    Hier wird eine Liste von ersatzWerkzeug erstellt, die später im Code verwendet wird, um
+    das Sortiment an verfügbaren ersatzWerkzeug anzuzeigen und auszuwählen
+     */
 
     var ersatzteilWerkzeug = mutableListOf<Ersatzteile>(
         Handywerkzeug(
@@ -73,6 +99,15 @@ open class Datenbank{
 
 
 
+
+
+
+    /*
+    Die Funktion DisplayAnzeigenLassen zeigt eine Liste von Handydisplays an die auf Lager sind.
+    Die Funktion fordert den benutzer auf, ein produkt auszuwählen in dem er zahle von 1 bis 6 eingibt,
+    wenn das ausgewählte produkt auf lager ist, wird es in den Warenkorb gelegt und auch bestätigt.
+    Schließlich wird der benutzer aufgefordert zu entscheiden, ob er weitere Produkte kaufen möchte
+    */
     fun displayAnzeigeLassen() {
 
         var logOut = LoginUndLogout()
@@ -164,6 +199,15 @@ open class Datenbank{
 
     }
 
+
+    /*
+    Die gegebene Funktion akkuAnzeigenLassen() gibt eine Liste von Handyakkus aus, die auf Lager sind, und bittet den Benutzer, einen Akku auszuwählen, den er in den Einkaufswagen legen möchte.
+    Der Benutzer kann zwischen verschiedenen Optionen wählen, indem er eine Zahl von 1 bis 6 eingibt und die Eingabetaste drückt.
+    Wenn der Benutzer eine gültige Option auswählt, wird der entsprechende Akku in den Warenkorb gelegt.
+    Wenn der ausgewählte Artikel nicht mehr auf Lager ist, wird eine Meldung ausgegeben, die den Benutzer darüber informiert. Am Ende wird der Warenkorb des Benutzers aktualisiert,
+    und er wird gefragt, ob er weitere Produkte kaufen möchte.
+    Wenn der Benutzer die Option "Logout" auswählt, wird er ausgeloggt.
+     */
     fun akkuAnzeigenLassen() {
         var logOut = LoginUndLogout()
 
@@ -250,6 +294,14 @@ open class Datenbank{
 
     }
 
+
+    /*
+    Diese Funktion namens "sonstigesWerkzeugAnzeigenLassen" zeigt eine Liste von Werkzeugen an, die auf Lager sind, und gibt dem Benutzer die Möglichkeit,
+    ein Werkzeug in den Einkaufswagen zu legen.
+    Dann wird eine Schleife durchlaufen, um jedes Werkzeug in der Liste auszugeben, einschließlich seines Namens, Preises, Verfügbarkeit und Beschreibung.
+    Die Funktion ruft auch die Funktion "warenkorbBefuellen" auf, um das ausgewählte Werkzeug zum Warenkorb des Benutzers hinzuzufügen.
+    Schließlich wird der Benutzer gefragt, ob er weitere Produkte kaufen möchte.
+    */
     fun sonstigesWerkzeugAnzeigenLassen() {
         var logOut = LoginUndLogout()
 
@@ -321,6 +373,12 @@ open class Datenbank{
 
     }
 
+
+    /*
+    Es wird eine Schleife durchlaufen, die alle Artikel in einer Liste von Handys ausgibt, einschließlich ihrer Namen, Preise, Verfügbarkeit und Bewertungen.
+    Danach wird der Benutzer aufgefordert, eine Zahl zwischen 1 und 6 auszuwählen, um einen Artikel zum Warenkorb hinzuzufügen oder sich auszuloggen.
+    Je nach Eingabe wird der ausgewählte Artikel zum Warenkorb hinzugefügt, und der Benutzer wird aufgefordert, weitere Artikel hinzuzufügen oder nicht.
+    */
     fun reparaturAnleitung() {
 
         var logOut = LoginUndLogout()
@@ -409,12 +467,22 @@ open class Datenbank{
 
     }
 
+
+    /*
+    Eie Funktion warenkorbBefuellen fügt ein übergebenes Ersatzteile-Objekt dem warenkorb hinzu und gibt den aktualisierten warenkorb zurück.
+     */
     fun warenkorbbefuellen(produkt: Ersatzteile): MutableList<Ersatzteile> {
 
         warenkorb.add(produkt)
         return warenkorb
     }
 
+
+    /*
+    Die Funktion warenkorbAnzeigen() zeigt den Inhalt des Warenkorbs an, falls er nicht leer ist.
+    Am Ende berechnet er den Gesamtpreis aller Produkte im Warenkorb mit der Funktion warenkorbPreis() und gibt ihn zusammen mit dem Zahlungsmenü aus.
+    Falls der Warenkorb leer ist, gibt er eine entsprechende Nachricht aus.
+     */
     fun warenkorbAnzeigen() {
 
         if (warenkorb.isEmpty()) {
@@ -434,6 +502,11 @@ open class Datenbank{
 
     }
 
+
+    /*
+    Die Funktion warenkorbPreis berechnet den Gesamtpreis aller Produkte im Warenkorb.
+    Jetzt wird das Ergebnis als BigDecimal mit zwei Nachkommastellen und Rundung auf den nächsten geraden Wert zurückgegeben.
+     */
     fun warenkorbPreis(): BigDecimal {
         var gesamtPreis = 0.0
         for (produkt in warenkorb) {
@@ -441,19 +514,24 @@ open class Datenbank{
         }
         val dezimal = BigDecimal(gesamtPreis).setScale(2,RoundingMode.HALF_EVEN)
         return dezimal
-
-
-
     }
 
+
+    /*
+    Die Funktion "warenkorbLeeren" dient dazu, den aktuellen Warenkorb zu leeren, indem alle Produkte aus der Liste entfernt werden.
+     */
     fun warenkorbLeeren(){
         warenkorb.clear()
         println("Ihr Warenkorb wurde erfolgreich geleert")
-
-
     }
 
-    fun bestandReduzieren(){
+
+    /*
+    Die Funktion überprüft zuerst, um welchen Produkttyp es sich handelt und sucht dann im entsprechenden Ersatzteilsortiment nach dem passenden Ersatzteil.
+    Wenn das Ersatzteil gefunden wird, wird die Anzahl reduziert.
+    Dabei wird für jedes Produkt im Warenkorb überprüft, ob es ein Handydisplay, ein Handyakku, ein Handywerkzeug oder eine Handyanleitung ist.
+     */
+    fun bestandReduzieren() {
 
         for (produkt in warenkorb){
 
@@ -492,6 +570,12 @@ open class Datenbank{
 
         }
     }
+
+
+
+
+
+
 
     fun haendlerBestellung(){
 
