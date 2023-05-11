@@ -74,11 +74,12 @@ class Accountverwaltung: Datenbank() {
         while (progress <= total) {
             print("$CYAN\rZahlung wird bearbeitet...$progress%$RESET")
             progress++
-            Thread.sleep(30)
+            Thread.sleep(20)
             }
         println()
         println("Zahlung mit Bankeinzug/Lastschrift war erfolgreich. \nVielen Dank für ihren Einkauf.")
         datenbank.bestandReduzieren()
+        warenkorbLeeren()
 
 
 
@@ -93,11 +94,12 @@ class Accountverwaltung: Datenbank() {
         while (progress <= total) {
             print("$CYAN\rZahlung wird bearbeitet...$progress%$RESET")
             progress++
-            Thread.sleep(30)
+            Thread.sleep(20)
         }
         println()
         println("Zahlung mit PayPal war erfolgreich. \nVielen Dank für ihren Einkauf.")
         datenbank.bestandReduzieren()
+        warenkorbLeeren()
 
 
 
