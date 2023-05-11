@@ -7,6 +7,15 @@ import menuFromStore
 
 class LoginUndLogout: Datenbank() {
 
+
+    /*
+    Die Funktion "logInMenueUser" implementiert die Login-Funktionalität für Kunden.
+    Der Benutzer wird aufgefordert, seinen Benutzernamen und sein Passwort einzugeben.
+    Wenn der Benutzername korrekt eingegeben wird, wird das eingegebene Passwort überprüft.
+    Wenn das Passwort korrekt eingegeben wird, wird der Benutzer eingeloggt und die Funktion gibt "true" zurück.
+    Andernfalls wird der Benutzer aufgefordert, den Benutzernamen und/oder das Passwort erneut einzugeben.
+    Wenn der Benutzer dreimal hintereinander ein falsches Passwort oder einen falschen Benutzernamen eingegeben hat, wird er ausgeloggt und die Funktion gibt "false" zurück.
+     */
     fun logInMenueUser(): Boolean{
         var logInUser = false
         var countTry = 1
@@ -50,6 +59,15 @@ class LoginUndLogout: Datenbank() {
         return logInUser
     }
 
+
+    /*
+    Die Funktion "logInMenueHaendler" implementiert die Login-Funktionalität für Kunden.
+    Der Händler wird aufgefordert, seinen Benutzernamen und sein Passwort einzugeben.
+    Wenn der Benutzername korrekt eingegeben wird, wird das eingegebene Passwort überprüft.
+    Wenn das Passwort korrekt eingegeben wird, wird der Benutzer eingeloggt und die Funktion gibt "true" zurück.
+    Andernfalls wird der Benutzer aufgefordert, den Benutzernamen und/oder das Passwort erneut einzugeben.
+    Wenn der Benutzer dreimal hintereinander ein falsches Passwort oder einen falschen Benutzernamen eingegeben hat, wird er ausgeloggt und die Funktion gibt "false" zurück.
+     */
     fun logInMenueHaendler(): Boolean{
         var logInHaendler = false
         var countTryHaendler = 1
@@ -92,6 +110,10 @@ class LoginUndLogout: Datenbank() {
        return false
     }
 
+
+    /*
+     Die Funktion logOutUser() hat die Aufgabe, den aktuellen Benutzer auszuloggen und das Hauptmenü der Anwendung aufzurufen.
+     */
     fun logOutUser():Boolean{
         println("Du wurdest erfolgreich ausgeloggt")
         println()

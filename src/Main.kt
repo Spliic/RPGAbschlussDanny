@@ -4,11 +4,8 @@ import Datenbank.Menu
 import LoginUndLogout.LoginUndLogout
 import Produkte.Ersatzteile
 import haendler.Haendleraccount
-
 var warenkorb = mutableListOf<Ersatzteile>()
 var menu = Menu()
-
-
 var CYAN = "\u001B[36m"
 var RESET = "\u001B[0m"
 

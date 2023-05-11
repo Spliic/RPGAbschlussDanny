@@ -12,7 +12,10 @@ class Menu {
 
 
 
-
+    /*
+    Die Funktion "menueUser" zeigt dem Benutzer ein Menü mit verschiedenen Optionen, die er wählen kann.
+    Die Funktion ruft dann je nach Auswahl des Benutzers andere Funktionen auf,
+     */
     fun menueUser():Boolean {
 
 
@@ -50,6 +53,11 @@ class Menu {
         return loggedIn
     }
 
+
+    /*
+    Die Funktion productUser() zeigt dem Benutzer die verschiedenen Produktkategorien zur Auswahl
+    und gibt je nach Eingabe des Benutzers die passende Produktkategorie aus.
+     */
     fun productUser():Boolean {
         var login = true
         println(
@@ -82,6 +90,12 @@ class Menu {
 
     }
 
+
+    /*
+    Diese Funktion stellt dem Benutzer ein Menü zur Verfügung, um aus verschiedenen Zahlungsoptionen auszuwählen.
+    Der Benutzer kann auswählen, ob er seine Produkte bezahlen oder seinen Warenkorb leeren möchte.
+    Außerdem kann der Benutzer zum Hauptmenü zurückkehren oder sich ausloggen.
+     */
     fun zahlungsMenu(){
         println(
             """
@@ -107,6 +121,11 @@ class Menu {
         }
     }
 
+
+    /*
+    In dieser Funktion wird das Menü für Händler angezeigt.
+    Der Händler hat die Möglichkeit, zwischen vier Optionen zu wählen: Produkte bestellen, Produkte hinzufügen, Produkte löschen und ausloggen.
+     */
     fun haendlerMenu(): Boolean{
         var haendlerLoggin = true
 
