@@ -53,7 +53,6 @@ fun printLogo(){
 /*Dieser Code prüft das Alter des Benutzers, bevor er den Zugriff zum Shop gewährt. Der Benutzer wird aufgefordert, sein Alter einzugeben.
     Wenn das eingegebene Alter größer oder gleich 12 ist, wird das Menü des Online-Shops aufgerufen und die while-Schleife beendet.
     Wenn das Alter kleiner als 12 ist, wird eine Fehlermeldung ausgegeben.
-
      */
 fun altersAbfrage(){
     var counterForContinue = true
@@ -72,6 +71,7 @@ fun altersAbfrage(){
         }
     }
 }
+
 
 /*
  Die Funktion menuFromStore öffnet ein Menü, in dem der Benutzer/Händler zwischen Optionen wählen kann.

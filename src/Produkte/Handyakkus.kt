@@ -4,16 +4,4 @@ class Handyakkus(name: String, preis: Double, anzahl: Int, bewertung: String) :E
     bewertung
 ) {
 
-
-    fun preisAendern(neuerpreis: Double){
-        this.preis = neuerpreis
-
-    }
-
-    fun anzahlAendern(anzahlVerkaufte: Int){
-
-        this.preis = this.preis - anzahlVerkaufte
-    }
-
-
 }
