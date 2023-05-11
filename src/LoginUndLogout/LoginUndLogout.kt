@@ -16,7 +16,7 @@ class LoginUndLogout: Datenbank() {
     Andernfalls wird der Benutzer aufgefordert, den Benutzernamen und/oder das Passwort erneut einzugeben.
     Wenn der Benutzer dreimal hintereinander ein falsches Passwort oder einen falschen Benutzernamen eingegeben hat, wird er ausgeloggt und die Funktion gibt "false" zurück.
      */
-    fun logInMenueUser(): Boolean{
+    fun logInMenueUser(datenbank:Datenbank): Boolean{
         var logInUser = false
         var countTry = 1
         var check = false
@@ -28,10 +28,10 @@ class LoginUndLogout: Datenbank() {
                 println("${CYAN}Bitte gebe dein Benutzernamen ein:$RESET")
                 val userInputName = readln()
 
-                if (kunde.containsKey(userInputName)) {
+                if (datenbank.kunde.containsKey(userInputName)) {
                     println("${CYAN}Bitte gebe dein Passwort ein:$RESET")
                     val userInputPassword = readln()
-                    if (kunde[userInputName] == userInputPassword){
+                    if (datenbank.kunde[userInputName] == userInputPassword){
                         println("Sie wurden erfolgreich eingeloggt.")
                         logInUser = true
                         check = true
