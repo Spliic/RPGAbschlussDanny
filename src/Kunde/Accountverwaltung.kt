@@ -87,7 +87,7 @@ class Accountverwaltung: Datenbank() {
         var progress = 0
 
         while (progress <= total) {
-            print("$CYAN\rZahlung wird bearbeitet...$progress%$RESET")
+            print("$CYAN\rZahlung wird bearbeitet...$progress%$RESET")    // Das \r steht dafür das der Cursor an den Anfang der Aktuellen zeile zurückkehrt, ohne eine neue zu beginnen
             progress++
             Thread.sleep(20)
             }
@@ -110,7 +110,7 @@ class Accountverwaltung: Datenbank() {
         var progress = 0
 
         while (progress <= total) {
-            print("$CYAN\rZahlung wird bearbeitet...$progress%$RESET")
+            print("$CYAN\rZahlung wird bearbeitet...$progress%$RESET")    // Das \r steht dafür das der Cursor an den Anfang der Aktuellen zeile zurückkehrt, ohne eine neue zu beginnen
             progress++
             Thread.sleep(20)
         }

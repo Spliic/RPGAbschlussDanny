@@ -113,14 +113,14 @@ open class Datenbank{
         var logOut = LoginUndLogout()
 
         println(
-            """
+            """$CYAN
                 .___.__               .__                
               __| _/|__| ____________ |  | _____  ___.__.
              / __ | |  |/  ___/\____ \|  | \__  \<   |  |
             / /_/ | |  |\___ \ |  |_> >  |__/ __ \\___  |
             \____ | |__/____  >|   __/|____(____  / ____|
                  \/         \/ |__|             \/\/  
-            $CYAN Diese Handydisplays sind auf Lager! $RESET  
+             Diese Handydisplays sind auf Lager! $RESET  
         """.trimIndent()
         )
         for (display in 0 until ersatzTeilSortimentDisplay.size) {
@@ -149,8 +149,9 @@ open class Datenbank{
             [3] Artikel 3: ${ersatzTeilSortimentDisplay[2].name}
             [4] Artikel 4: ${ersatzTeilSortimentDisplay[3].name}
             [5] Artikel 5: ${ersatzTeilSortimentDisplay[4].name}
-            [6] Logout
-            Bitte Wählen sie eine Zahl von 1-6 (Mit Enter bestätigen)
+            [6] Zurück zum Menü
+            [7] Logout
+            Bitte Wählen sie eine Zahl von 1-7 (Mit Enter bestätigen)
         """.trimIndent()
         )
         var userInputProductMenu = readln().toInt()
@@ -190,7 +191,8 @@ open class Datenbank{
                     println("Sie haben den Artikel: ${ersatzTeilSortimentDisplay[4].name} in den Warenkorb gelegt")
                 }
             }
-            6 -> logOut.logOutUser()
+            6 -> menu.menueUser()
+            7 -> logOut.logOutUser()
         }
         warenkorbbefuellen(ersatzTeilSortimentDisplay[userInputProductMenu - 1])
 
@@ -212,14 +214,14 @@ open class Datenbank{
         var logOut = LoginUndLogout()
 
         println(
-            """
+            """$CYAN
                     __    __          
             _____  |  | _|  | ____ __ 
             \__  \ |  |/ /  |/ /  |  \
              / __ \|    <|    <|  |  /
             (____  /__|_ \__|_ \____/ 
                  \/     \/    \/    
-            $CYAN Diese Handyakkus sind auf Lager! $RESET
+             Diese Handyakkus sind auf Lager! $RESET
         """.trimIndent()
         )
         for (akku in 0 until ersatzTeilSortimentAkku.size) {
@@ -246,8 +248,9 @@ open class Datenbank{
             [3] Artikel 3: ${ersatzTeilSortimentAkku[2].name}
             [4] Artikel 4: ${ersatzTeilSortimentAkku[3].name}
             [5] Artikel 5: ${ersatzTeilSortimentAkku[4].name}
-            [6] Logout
-            Bitte Wählen sie eine Zahl von 1-6 (Mit Enter bestätigen)
+            [6] Zurück zum Menü
+            [7] Logout
+            Bitte Wählen sie eine Zahl von 1-7 (Mit Enter bestätigen)
         """.trimIndent()
         )
         var userInputProductMenu = readln().toInt()
@@ -287,7 +290,8 @@ open class Datenbank{
                     println("Sie haben den Artikel: ${ersatzTeilSortimentAkku[4].name} in den Warenkorb gelegt")
                 }
             }
-            6 -> logOut.logOutUser()
+            6 -> menu.menueUser()
+            7 -> logOut.logOutUser()
         }
         warenkorbbefuellen(ersatzTeilSortimentAkku[userInputProductMenu - 1])
         println("Wollen sie noch weitere Produkte kaufen?")
@@ -306,14 +310,14 @@ open class Datenbank{
         var logOut = LoginUndLogout()
 
         println(
-            """
+            """$CYAN
                                   __                                
             __  _  __ ___________|  | __________ ____  __ __  ____  
             \ \/ \/ // __ \_  __ \  |/ /\___   // __ \|  |  \/ ___\ 
              \     /\  ___/|  | \/    <  /    /\  ___/|  |  / /_/  >
               \/\_/  \___  >__|  |__|_ \/_____ \\___  >____/\___  / 
                          \/           \/      \/    \/     /_____/   
-             $CYAN Diese Werkzeug haben wir auf Lager!$RESET
+             Diese Werkzeug haben wir auf Lager!$RESET
         """.trimIndent()
         )
         for (werkzeug in 0 until ersatzteilWerkzeug.size) {
@@ -338,8 +342,9 @@ open class Datenbank{
             [1] Artikel 1: ${ersatzteilWerkzeug[0].name}
             [2] Artikel 2: ${ersatzteilWerkzeug[1].name}
             [3] Artikel 3: ${ersatzteilWerkzeug[2].name}
-            [4] Logout
-            Bitte Wählen sie eine Zahl von 1-4 (Mit Enter bestätigen)
+            [4] Zurück zum Menü
+            [5] Logout
+            Bitte Wählen sie eine Zahl von 1-5 (Mit Enter bestätigen)
         """.trimIndent()
         )
         var userInputProductMenu = readln().toInt()
@@ -365,7 +370,8 @@ open class Datenbank{
                     println("Sie haben den Artikel: ${ersatzteilWerkzeug[2].name} in den Warenkorb gelegt")
                 }
             }
-            4 -> logOut.logOutUser()
+            4 -> menu.menueUser()
+            5 -> logOut.logOutUser()
         }
         warenkorbbefuellen(ersatzteilWerkzeug[userInputProductMenu - 1])
         println("Wollen sie noch weitere Produkte kaufen?")
@@ -384,14 +390,14 @@ open class Datenbank{
         var logOut = LoginUndLogout()
 
         println(
-            """
+            """$CYAN
                            _____         .__         .__  __                        
               /  _  \   ____ |  |   ____ |__|/  |_ __ __  ____    ____  
              /  /_\  \ /    \|  | _/ __ \|  \   __\  |  \/    \  / ___\ 
             /    |    \   |  \  |_\  ___/|  ||  | |  |  /   |  \/ /_/  >
             \____|__  /___|  /____/\___  >__||__| |____/|___|  /\___  / 
                     \/     \/          \/                    \//_____/
-                    """.trimIndent()
+                    $RESET""".trimIndent()
         )
         for (anleitung in 0 until anleitungHandys.size) {
             println(
@@ -417,8 +423,9 @@ open class Datenbank{
             [3] Artikel 3: ${anleitungHandys[2].name}
             [4] Artikel 4: ${anleitungHandys[3].name}
             [5] Artikel 5: ${anleitungHandys[4].name}
-            [6] Logout
-            Bitte Wählen sie eine Zahl von 1-6 (Mit Enter bestätigen)
+            [6] Zurück zum Menü
+            [7] Logout
+            Bitte Wählen sie eine Zahl von 1-7 (Mit Enter bestätigen)
         """.trimIndent()
         )
         var userInputProductMenu = readln().toInt()
@@ -460,7 +467,8 @@ open class Datenbank{
                     println("Sie haben den Artikel: ${anleitungHandys[4].name} in den Warenkorb gelegt")
                 }
             }
-            6 -> logOut.logOutUser()
+            6 -> menu.menueUser()
+            7 -> logOut.logOutUser()
         }
         warenkorbbefuellen(anleitungHandys[userInputProductMenu - 1])
         println("Wollen sie noch weitere Produkte kaufen?")
@@ -576,9 +584,9 @@ open class Datenbank{
 
 
 
-
+    // Leider nicht mehr zeitlich geschafft den Händler bereich zu beenden.
+    // Ziel ist es aber Privat diesen noch zu vervollständigen
     fun haendlerBestellung(){
-
 
     }
 
