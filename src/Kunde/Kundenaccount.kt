@@ -1,5 +1,6 @@
 package Kunde
 import Datenbank.Datenbank
+import menuFromStore
 
 class Kundenaccount: Datenbank() {
 
@@ -10,11 +11,10 @@ class Kundenaccount: Datenbank() {
         println("Bitte gebe für deinen Benutzernamen auch ein Passwort ein")
         val addNewAccountPassword = readln()
         kunde[addNewAcountName] = addNewAccountPassword
-        println("Neues Kundenkonto mit $addNewAcountName wurde angelegt.")
+        println("Neues Kundenkonto mit Benutzername:$addNewAcountName wurde angelegt.")
+
+
     }
-
-
-
 
 
 

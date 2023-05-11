@@ -14,10 +14,8 @@ var RESET = "\u001B[0m"
 
 fun main() {
 
-
     printLogo()
     altersAbfrage()
-
 
 }
 
@@ -92,6 +90,8 @@ fun menuFromStore(): Boolean {
     val loginUndLogoutHaendler = LoginUndLogout()
     val menueUser = Menu()
     val menueHaendler = Menu()
+
+
 
     println(
         """
